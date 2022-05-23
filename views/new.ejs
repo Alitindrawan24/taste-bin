@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasteBin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/autosize.min.js"></script>
+</head>
+<body>
+    <form action="/save" method="POST">
+        <%- include("_button.ejs", {canSave:true}) %> 
+        <div class="wrapper">
+            <div class="line-numbers icons">
+                &gt;
+            </div>
+            <textarea autofocus name="value"><%= locals.value %></textarea>
+        </div>
+    </form>
+    <script>
+        autosize(document.querySelector('textarea'));
+    </script>
+</body>
+</html>
