@@ -2,12 +2,15 @@ import {Request, Response} from 'express';
 import mongoose from 'mongoose';
 import Document from '../models/Document';
 import fs from 'fs';
+import { config as dotenv } from "dotenv";
 
 class MainController
 {
     constructor()
     {
-        mongoose.connect("mongodb://localhost/tastebin", {})
+        dotenv();        
+        const MONGODB_HOST:string = process.env.MONGODB_HOST || 'localhost';
+        mongoose.connect(MONGODB_HOST, {})
     }
 
     index = (req: Request, res: Response):void => {
