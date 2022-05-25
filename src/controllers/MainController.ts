@@ -28,6 +28,10 @@ class MainController
     show = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
         const { id } = req.params
         try {
+            if( !mongoose.Types.ObjectId.isValid(id) ) {
+                throw new Error('Invalid ID')
+            }
+
             const document = await Document.findById(id)
             const code:string = document.value || '';
             const numbers:number = code.split('\n').length
@@ -41,11 +45,15 @@ class MainController
     duplicate = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
         const { id } = req.params
         try {
+            if( !mongoose.Types.ObjectId.isValid(id) ) {
+                throw new Error('Invalid ID')
+            }
+            
             const document = await Document.findById(id)
             const value:string = document.value || '';
             res.render('new', {value})
         } catch (error) {
-            res.redirect(`/${id}`)
+            res.redirect(`/${id}/show`)
             next(error)
         }
     }
@@ -54,7 +62,7 @@ class MainController
         const { value } = req.body
         try {
             const document = await Document.create({value})
-            res.redirect(`/${document.id}`)
+            res.redirect(`/${document.id}/show`)
         } catch (error) {
             res.render('new', {value});
             next(error)

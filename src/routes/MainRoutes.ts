@@ -5,7 +5,7 @@ class MainRoutes extends BaseRoutes {
     public routes(): void {
         this.router.get('/', MainController.index);
         this.router.get('/new', MainController.create);
-        this.router.get('/:id', MainController.show);
+        this.router.get('/:id/show', MainController.show);
         this.router.get('/:id/duplicate', MainController.duplicate);
         this.router.post('/save', MainController.store);
     }
