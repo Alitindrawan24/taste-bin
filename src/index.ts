@@ -2,15 +2,17 @@ import express, { Application } from 'express';
 import { config as dotenv } from "dotenv";
 import routes from "./routes";
 import plugins from "./plugins";
+import handlings from "./handlings";
 
 class App{
     public app: Application;
 
     constructor(){
         this.app = express();
+        dotenv();
         this.plugins();
         this.routes();
-        dotenv();
+        this.handlings()
     }
 
     protected plugins(): void {
@@ -19,6 +21,10 @@ class App{
 
     protected routes(): void {
         routes(this.app);        
+    }    
+    
+    protected handlings(): void {
+        handlings(this.app);        
     }    
 }
 

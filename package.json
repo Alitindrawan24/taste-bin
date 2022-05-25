@@ -1,6 +1,6 @@
 {
   "name": "tastebin_ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "build/index.js",
   "author": "Alt24",
   "license": "MIT",
@@ -21,7 +21,9 @@
     "dotenv": "^14.3.2",
     "ejs": "^3.1.7",
     "express": "^4.17.2",
-    "mongoose": "^6.3.2"
+    "express-error-slack": "^2.0.0",
+    "mongoose": "^6.3.2",
+    "pretty-error": "^4.0.0"
   },
   "engines": {
     "node": "14.x"

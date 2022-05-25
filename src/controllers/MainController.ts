@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import {NextFunction, Request, Response} from 'express';
 import mongoose from 'mongoose';
 import Document from '../models/Document';
 import fs from 'fs';
@@ -25,7 +25,7 @@ class MainController
         res.render('new')
     }
 
-    show = async (req: Request, res: Response):Promise<void> => {
+    show = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
         const { id } = req.params
         try {
             const document = await Document.findById(id)
@@ -34,10 +34,11 @@ class MainController
             res.render('index', {code, numbers, id})
         } catch (error) {
             res.redirect('/')
+            next(error)
         }
     }
 
-    duplicate = async (req: Request, res: Response):Promise<void> => {
+    duplicate = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
         const { id } = req.params
         try {
             const document = await Document.findById(id)
@@ -45,16 +46,18 @@ class MainController
             res.render('new', {value})
         } catch (error) {
             res.redirect(`/${id}`)
+            next(error)
         }
     }
 
-    store = async (req: Request, res: Response):Promise<void> => {
+    store = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
         const { value } = req.body
         try {
             const document = await Document.create({value})
             res.redirect(`/${document.id}`)
         } catch (error) {
             res.render('new', {value});
+            next(error)
         }
     }
 }
