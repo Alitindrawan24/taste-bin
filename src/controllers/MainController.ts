@@ -10,6 +10,7 @@ class MainController
     {
         dotenv();        
         const MONGODB_HOST:string = process.env.MONGODB_HOST || 'localhost';
+        mongoose.set('strictQuery', false);
         mongoose.connect(MONGODB_HOST, {})
     }
 
@@ -33,7 +34,7 @@ class MainController
             }
 
             const document = await Document.findById(id)
-            const code:string = document.value || '';
+            const code:string = document?.value || '';
             const numbers:number = code.split('\n').length
             res.render('index', {code, numbers, id})
         } catch (error) {
@@ -50,7 +51,7 @@ class MainController
             }
             
             const document = await Document.findById(id)
-            const value:string = document.value || '';
+            const value:string = document?.value || '';
             res.render('new', {value})
         } catch (error) {
             res.redirect(`/${id}/show`)

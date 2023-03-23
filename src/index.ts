@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import { config as dotenv } from "dotenv";
 import routes from "./routes";
 import plugins from "./plugins";
 import handlings from "./handlings";
@@ -9,7 +8,6 @@ class App{
 
     constructor(){
         this.app = express();
-        dotenv();
         this.plugins();
         this.routes();
         this.handlings()
