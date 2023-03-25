@@ -18,7 +18,7 @@ TasteBin was written using Node Js with Express Framework and TypeScript.
 To get started with TasteBin, you will need to have Node JS installed on your computer. You can download Node JS from the official website: https://nodejs.org/
 And also you need to have Mongo DB installed on your computer. You can download Mongo DB from the official website: https://www.mongodb.com/
 
-Once you have Go installed, follow these steps:
+Once you have Node Js and Mongo DB installed, follow these steps:
 - Clone the repository to your local machine using
 ```bash
 git clone https://github.com/Alitindrawan24/taste-bin.git
