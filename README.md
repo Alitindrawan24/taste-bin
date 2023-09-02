@@ -9,6 +9,7 @@ TasteBin was written using Node Js with Express Framework and TypeScript.
 - Node JS (Node v14 or above)
 - TypeScript
 - Mongo DB
+- Docker
 
 ## Package/Frameworks
 - Express JS (v4.17)
@@ -49,6 +50,14 @@ npm run start
 npm run dev-start
 ```
 - Open your web browser and navigate to http://localhost:3000 to access the application.
+
+## Deployment
+- To easily deploy this project, you can use docker compose with the following command
+```bash
+docker compose up -d
+```
+
+- Or alternatively use pm2 to deploy the project
 
 ## What's Next ?
 - Set an expiration date for their paste
