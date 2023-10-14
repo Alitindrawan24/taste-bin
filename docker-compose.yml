@@ -2,21 +2,30 @@ version: '3.8'
 
 services:
   tastebin:
-    build:      
+    build:
+      context: .
       dockerfile: Dockerfile
     restart: always
     labels:
       app: tastebin
     ports:
       - "3030:3000"
+    networks:
+      - tastebin_app
   
   mongo:
     image: 'mongo:4.2.16-bionic'
     ports:
       - "27017:27017"
+    depends_on:
+      - tastebin
     environment:
       MONGO_INITDB_DATABASE: tastebin
       MONGO_INITDB_ROOT_USERNAME: ""
       MONGO_INITDB_ROOT_PASSWORD: ""
     volumes:
       - ./db-data/mongo/:/data/db
+
+networks:
+  tastebin_app:    
+    driver: bridge
